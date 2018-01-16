@@ -15,10 +15,6 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "action_layer.h"
-#include "eeconfig.h"
-#include "keycode_config.h"
-#include "quantum_keycodes.h"
 
 extern keymap_config_t keymap_config;
 
@@ -147,18 +143,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `--------------------------------------------------------------------------------------------------------'
  */
 [_ADJUST] =  {
-  { _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_TOG, _______, _______, _______, _______, _______, _______, _______ },
-  { _______, RESET,   _______, AU_ON,   AU_OFF,  AG_NORM, RGB_HUI, RGB_HUD, _______, AG_SWAP, QWERTY,  GAME,    _______,  RESET,   KC_DEL  },
-  { _______, _______, _______, _______, _______, _______, RGB_SAI, RGB_SAD, _______, _______, _______, _______, _______, _______, _______ },
-  { _______, _______, _______, _______, _______, _______, RGB_VAI, RGB_VAD, _______, _______, _______, _______, _______, _______, _______ },
-  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_MOD, BL_TOGG, _______, _______, _______, _______, _______, _______ },
+  { _______, RESET,   _______, AU_ON,   AU_OFF,  AG_NORM, RGB_HUI, RGB_HUD, BL_STEP, AG_SWAP, QWERTY,  GAME,    _______,  RESET,   KC_DEL  },
+  { _______, _______, _______, _______, _______, _______, RGB_SAI, RGB_SAD, BL_INC, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______, _______, _______, _______, RGB_VAI, RGB_VAD, BL_DEC, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______, _______, _______, _______, _______, _______, BL_BRTG, _______, _______, _______, _______, _______, _______ },
 },
 
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY :
+    case BL_TOGG:
+      if (record->event.pressed) {
+        keycaps_led_toggle();
+      }
+      return false;
+      break;
+    case QWERTY:
       if (record->event.pressed) {
         layer_off(_RAISE);
         layer_off(_LOWER);

@@ -67,5 +67,6 @@ void gp103_led_on(void);
 void keycaps_led_init(void);
 void keycaps_led_off(void);
 void keycaps_led_on(void);
+void keycaps_led_toggle(void);
 
 #endif

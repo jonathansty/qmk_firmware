@@ -103,3 +103,6 @@ void keycaps_led_off(void) {
 void keycaps_led_on(void) {
 	PORTF &= ~(1 << XD75_KEYCAPS_LED);
 }
+void keycaps_led_toggle(void){
+	PORTF ^= (1 << XD75_KEYCAPS_LED);
+}

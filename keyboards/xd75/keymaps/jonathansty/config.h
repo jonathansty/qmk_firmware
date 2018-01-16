@@ -20,5 +20,6 @@
 #include QMK_KEYBOARD_CONFIG_H
 
 // place overrides here
+#undef BACKLIGHT_BREATHING
 
 #endif
