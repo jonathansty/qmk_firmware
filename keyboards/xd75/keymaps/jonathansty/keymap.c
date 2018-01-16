@@ -37,7 +37,6 @@ enum custom_layers {
   _GAME,
   _LOWER,
   _RAISE,
-  _PLOVER,
   _ADJUST
 };
 
@@ -160,6 +159,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY :
       if (record->event.pressed) {
+        layer_off(_RAISE);
+        layer_off(_LOWER);
+
         set_single_persistent_default_layer(_QWERTY);
         keycaps_led_off();
       }
@@ -167,6 +169,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case GAME:
       if (record->event.pressed) {
+        layer_off(_RAISE);
+        layer_off(_LOWER);
         set_single_persistent_default_layer(_GAME);
         keycaps_led_on();
       }
