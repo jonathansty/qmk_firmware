@@ -14,7 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include QMK_KEYBOARD_H
+#include "xd75.h"
+#include "config.h"
 
 extern keymap_config_t keymap_config;
 
@@ -41,7 +42,10 @@ enum custom_keycodes {
   GAME,
   LOWER,
   RAISE,
-  ADJUST
+  ADJUST,
+
+  PTR_ARROW,
+  MAKE_KEYBOARD
 };
 
 #define XXXXXXX KC_NO
@@ -100,11 +104,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `--------------------------------------------------------------------------------------------------------'
   */
 [_LOWER] = {
-  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PAUSE, KC_INS, _______ },
-  { KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC },
-  { KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE },
-  { _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, _______, KC_F12,  KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN1 },
-  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY }
+  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, PTR_ARROW, KC_PAUSE, KC_INS, _______ },
+  { KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, _______, KC_CIRC, KC_AMPR, KC_ASTR,   KC_LPRN, KC_RPRN, KC_BSPC },
+  { KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, KC_F6,   KC_UNDS, KC_PLUS,   KC_LCBR, KC_RCBR, KC_PIPE },
+  { _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, _______, KC_F12,  KC_MS_L, KC_MS_D,   KC_MS_U, KC_MS_R, KC_BTN1 },
+  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT,   KC_VOLD, KC_VOLU, KC_MPLY }
 },
 
 /* Raise
@@ -143,11 +147,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `--------------------------------------------------------------------------------------------------------'
  */
 [_ADJUST] =  {
-  { _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_MOD, BL_TOGG, _______, _______, _______, _______, _______, _______ },
-  { _______, RESET,   _______, AU_ON,   AU_OFF,  AG_NORM, RGB_HUI, RGB_HUD, BL_STEP, AG_SWAP, QWERTY,  GAME,    _______,  RESET,   KC_DEL  },
-  { _______, _______, _______, _______, _______, _______, RGB_SAI, RGB_SAD, BL_INC, _______, _______, _______, _______, _______, _______ },
-  { _______, _______, _______, _______, _______, _______, RGB_VAI, RGB_VAD, BL_DEC, _______, _______, _______, _______, _______, _______ },
-  { _______, _______, _______, _______, _______, _______, _______, _______, BL_BRTG, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______,       _______, _______, _______, RGB_TOG, RGB_MOD, BL_TOGG, _______, _______, _______, _______, _______, _______ },
+  { _______, RESET,   MAKE_KEYBOARD, AU_ON,   AU_OFF,  AG_NORM, RGB_HUI, RGB_HUD, BL_STEP, AG_SWAP, QWERTY,  GAME,    _______,  RESET,   KC_DEL  },
+  { _______, _______, _______,       _______, _______, _______, RGB_SAI, RGB_SAD, BL_INC, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______,       _______, _______, _______, RGB_VAI, RGB_VAD, BL_DEC, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______,       _______, _______, _______, _______, _______, BL_BRTG, _______, _______, _______, _______, _______, _______ },
 },
 
 };
@@ -204,6 +208,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(_ADJUST);
         } else {
           layer_off(_ADJUST);
+        }
+        return false;
+        break;
+      case PTR_ARROW:
+        if(record->event.pressed){
+          SEND_STRING("->");
+        }
+        return false;
+        break;
+      case MAKE_KEYBOARD:
+        if(record->event.pressed){
+          SEND_STRING("make xd75:jonathansty");
         }
         return false;
         break;
