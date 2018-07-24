@@ -8,6 +8,8 @@
 #define XXXXXXX KC_NO
 #define _______ KC_TRNS
 
+// some stuff that was originally from a XD75re config of someone...
+// Probably fabian! Thanks Fabian.
 #define CTL_ESC CTL_T(KC_ESC)  // Tap for Escape, hold for Control
 #define HPR_TAB ALL_T(KC_TAB)  // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
 #define MEH_GRV MEH_T(KC_GRV)  // Tap for Backtick, hold for Meh (Ctrl+Alt+Shift)
