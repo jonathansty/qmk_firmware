@@ -1,7 +1,7 @@
 RGBLIGHT_ENABLE = yes
 KEY_LOCK_ENABLE = yes
 
-EXTRAFLAGS      += -flto
+LTO_ENABLE      = yes
 UNICODE_ENABLE  = no
 MOUSEKEY_ENABLE = no
 
@@ -9,6 +9,3 @@ MOUSEKEY_ENABLE = no
 CONSOLE_ENABLE  = no # yes
 COMMAND_ENABLE  = no
 
-ifndef QUANTUM_DIR
-	include ../../../../Makefile
-endif

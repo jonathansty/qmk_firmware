@@ -2,6 +2,11 @@
 
 ![MxSS - Polycarb 65% Kit for MX/SMK](https://i.imgur.com/WDTWcmU.jpg)
 
+### Important Note:
+**This PCB supports the VIA configurator, and this is the recommended way to configure the keymap on this keyboard. Building the firmware should only be necessary if you would like to change the colours of the front LEDs in indicator mode.**
+
+**For more information about the VIA configurator, [see here](https://caniusevia.com/).**
+
 ### Information:
 
  - Case: Frosted Polycarbonate, CNC milled
@@ -29,7 +34,7 @@ Make example for this keyboard (after setting up your build environment):
 
     make mxss:default
 
-See [build environment setup](https://docs.qmk.fm/build_environment_setup.html) then the [make instructions](https://docs.qmk.fm/make_instructions.html) for more information.
+See [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) then the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information.
 
 # Front LED Operation
 
@@ -48,7 +53,3 @@ Colors for FLED_INDI mode are hardcoded as hue/saturation values, the caps lock 
  - FLED_MOD - Cycle between the 3 modes (FLED_OFF -> FLED_RGB -> FLED_INDI)
  - FLED_VAI - Increase front LED brightness
  - FLED_VAD - Decrease front LED brightness
- 
- # Further Notes
- 
- As SAFE_RANGE is used for defining the custom keycodes seen above, please use NEW_SAFE_RANGE as the starting value for any custom keycodes in keymap.c, as per the example.
