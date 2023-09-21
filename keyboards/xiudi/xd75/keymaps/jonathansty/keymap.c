@@ -210,3 +210,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record)
+{
+  switch(keycode) {
+    case SFT_ENT:
+      return 100;
+    default:
+      return TAPPING_TERM;
+  }
+}

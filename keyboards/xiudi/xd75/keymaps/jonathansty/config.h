@@ -19,4 +19,8 @@
 #include "../../../xd75/config.h"
 
 // place overrides here
-#undef BACKLIGHT_BREATHING
+// #undef BACKLIGHT_BREATHING
+
+#define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
+
